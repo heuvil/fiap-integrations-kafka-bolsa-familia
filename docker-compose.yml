@@ -1,6 +1,7 @@
 version: '3'
 services:
   kafka:
+    container_name: kafka
     image: spotify/kafka:latest
     ports:
     - "9092:9092"
@@ -18,12 +19,35 @@ services:
       --zookeeper
       localhost:2181 --replication-factor 1 --partitions 1
       --topic csv_topic &) && (supervisord -n)"
-
-  csvtokafka:
+      
+  csv-to-kafka:
+    container_name: csv-to-kafka
     restart: always
-    build: .
+    build: producer/.
     working_dir: /app
     ports:
-    - "8080:8080"
+    - "9080:9080"
     depends_on:
       - kafka
+
+  consumer-1:
+    container_name: consumer-1
+    restart: always
+    build: consumer-1/.
+    working_dir: /app
+    ports:
+    - "80:80"
+    depends_on:
+      - kafka
+      - csv-to-kafka
+  
+  consumer-2:
+    container_name: consumer-2
+    restart: always
+    build: consumer-2/.
+    working_dir: /app
+    ports:
+    - "81:81"
+    depends_on:
+      - kafka
+      - csv-to-kafka
