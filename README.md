@@ -17,8 +17,8 @@ Crie um produtor para carregar os dados do arquivo do bolsa família (referente 
 Membros do Grupo:
   - Caio Souza Norbiato (RM333950)
   - Heuler Alexandre Vila (RM333943)
-  - Rafael ...
-  - Bruno ...
+  - Rafael Petronilio (RM334076)
+  - Bruno Shiroma (RM334070)
 
 
 ### Tech
