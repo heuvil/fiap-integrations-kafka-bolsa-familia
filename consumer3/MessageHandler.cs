@@ -22,19 +22,19 @@ namespace consumer3
         {
             var conf = new ConsumerConfig
             {
-                GroupId = "test-consumer-group",
+                GroupId = "consumer3-group",
                 BootstrapServers = "kafka:9092",
                 AutoOffsetReset = AutoOffsetReset.Earliest
             };
 
             var listBolsaFamilia = new List<BolsaFamilia>();
-            int totalBeneficiarios = 0;
+            int totalMsgLidas = 0;
 
             using (var c = new ConsumerBuilder<Ignore, string>(conf).Build())
             {
                 c.Subscribe("csv_topic");
                 var cts = new CancellationTokenSource();
-                cts.CancelAfter(90000);
+                cts.CancelAfter(35000);
 
                 try
                 {
@@ -42,10 +42,10 @@ namespace consumer3
                     {
                         var message = c.Consume(cts.Token);
                         //_logger.LogInformation($"Mensagem: {message.Value} recebida de {message.TopicPartitionOffset}");
-                        Console.WriteLine($"Mensagem: {message.Value} recebida de {message.TopicPartitionOffset}");
+                        Console.WriteLine($"Mensagem recebida de {message.TopicPartitionOffset}");
                         var bolsaFamilia = JsonSerializer.Deserialize<BolsaFamilia>(message.Value);
                         listBolsaFamilia.Add(bolsaFamilia);
-                        totalBeneficiarios = totalBeneficiarios++;
+                        totalMsgLidas = totalMsgLidas + 1;
                     }
                 }
                 catch (OperationCanceledException)
@@ -54,7 +54,7 @@ namespace consumer3
                 }
                 finally
                 {
-                    Console.WriteLine("Temos um total de {0} Beneficiários lidos no arquivo CSV.", totalBeneficiarios);
+                    Console.WriteLine("Temos um total de {0} Beneficiários lidos no arquivo CSV.",totalMsgLidas);
                 }
 
             }
