@@ -21,9 +21,19 @@ services:
 
   csvtokafka:
     restart: always
-    build: .
+    build: producer/.
     working_dir: /app
     ports:
     - "8080:8080"
     depends_on:
       - kafka
+
+  consumer1:
+    restart: always
+    build: consumer1/.
+    working_dir: /app
+    ports:
+    - "80:80"
+    depends_on:
+      - kafka
+      - csvtokafka
