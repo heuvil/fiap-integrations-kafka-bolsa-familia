@@ -1,0 +1,19 @@
+{
+  "FilePath": "/home/heuvil/Dev/20200202/fiap-integrations-kafka-bolsa-familia/consumer1/consumer1.csproj",
+  "Configuration": {
+    "ConfigurationName": "MVC-3.0",
+    "LanguageVersion": "3.0",
+    "Extensions": [
+      {
+        "ExtensionName": "MVC-3.0"
+      }
+    ]
+  },
+  "ProjectWorkspaceState": {
+    "TagHelpers": [],
+    "CSharpLanguageVersion": 800
+  },
+  "RootNamespace": "consumer1",
+  "Documents": [],
+  "SerializationFormat": "0.2"
+}
