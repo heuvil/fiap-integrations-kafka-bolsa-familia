@@ -10,12 +10,13 @@ Crie um produtor para carregar os dados do arquivo do bolsa família (referente 
 
   - Executar o docker-compose up
   - Executar o get em localhost:8080 para carregar os registros no tópico csv_topic
-  - Executar observar o log do container consumer1, ficará ativo por 30s para consumir as mensagens e mostrar o cálculo.
+  - Observar o log do container consumer1, ficará ativo por 30s para consumir as mensagens e mostrar o cálculo.
+  - Observar o log do container consumer3, após o período de 35 segundos consumindo as mensagens, ele mostrará o resultado em uma mensagem semelhante à: "Temos um total de ### beneficiários lidos no arquivo CSV."
 
 
 Membros do Grupo:
   - Caio Souza Norbiato (RM333950)
-  - Heuler ...
+  - Heuler Alexandre Vila (RM333943)
   - Rafael ...
   - Bruno ...
 
