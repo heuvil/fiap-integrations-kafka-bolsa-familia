@@ -18,7 +18,7 @@ spring:
                 web-allow-others: true
             
     jpa:
-        show-sql: true
+        show-sql: false
         hibernate:
             ddl-auto: update
         properties:
@@ -27,5 +27,6 @@ spring:
 logging:
   level:
     root: ERROR
-    br.com.fiap.consumer2: DEBUG
+    br.com.fiap.consumer2: ERROR
+    org.hibernate: ERROR
 
