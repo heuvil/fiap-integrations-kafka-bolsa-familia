@@ -1,0 +1,17 @@
+kafka:
+    host: kafka:9092
+    group-id: consumer-group
+    client-id: consumer2
+server:
+    port: 81
+
+spring:
+    datasource:
+            url: jdbc:h2:mem:jpadb
+            driver-class-name: org.h2.Driver
+            username: sa
+            password: mypass
+    h2: 
+        console:
+            enabled: true
+            path: /h2-console

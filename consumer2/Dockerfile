@@ -1,17 +1,35 @@
-FROM python:3
+#### Stage 1: Build the application
+FROM openjdk:8-jdk-alpine as build
 
-ENV PYTHONUNBUFFERED 1
+# Set the current working directory inside the image
+WORKDIR /app
 
-ENV APP /app
+# Copy maven executable to the image
+COPY mvnw .
+COPY .mvn .mvn
 
-RUN mkdir $APP
+# Copy the pom.xml file
+COPY pom.xml .
 
-WORKDIR $APP
+# Build all the dependencies in preparation to go offline. 
+# This is a separate step so the dependencies will be cached unless 
+# the pom.xml file has changed.
+RUN chmod +x ./mvnw
+RUN ./mvnw dependency:go-offline -B
 
-EXPOSE 81
+# Copy the project source
+COPY src src
 
-COPY requirements.txt .
+# Package the application
+RUN ./mvnw package -DskipTests
 
-RUN pip install -r requirements.txt
+#### Stage 2: A minimal docker image with command to run the app 
+FROM openjdk:8-jre-alpine
 
-COPY . .
+#ARG DEPENDENCY=/app/target/dependency
+
+# Copy project dependencies from the build stage
+COPY --from=build /app/target/consumer2*.jar /app/target/consumer2.jar
+
+# Runs application
+ENTRYPOINT [ "java", "-jar", "/app/target/consumer2.jar"]
