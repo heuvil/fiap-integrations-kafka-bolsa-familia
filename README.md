@@ -6,6 +6,10 @@ Crie um produtor para carregar os dados do arquivo do bolsa família (referente 
   - Mostrar dados do beneficiário que tenha a maior parcela até o momento
   - Quantidade de registros lidos do Topic
 
+##### Big Picture da solução:
+![picture](.img/bigPicture.png)
+
+
 # Para executar
 
   - Executar o docker-compose up
