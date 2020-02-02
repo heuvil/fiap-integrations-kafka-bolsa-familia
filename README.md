@@ -42,4 +42,6 @@ $ docker-compose up
 ![picture](.img/resultadoConsumer1.png)
 ##### Resultado do consumer 3:
 ![picture](.img/resultadoConsumer3.png)
+##### Atividades relializadas no Trello:
+![picture](.img/trello.png)
  
