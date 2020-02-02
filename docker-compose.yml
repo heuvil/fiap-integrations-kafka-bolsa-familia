@@ -1,7 +1,6 @@
 version: '3'
 services:
   kafka:
-    container_name: kafka
     image: spotify/kafka:latest
     ports:
     - "9092:9092"
@@ -16,38 +15,46 @@ services:
       "(sleep 15s &&
       /opt/kafka_2.11-0.10.1.0/bin/kafka-topics.sh
       --create
-      --zookeeper
-      localhost:2181 --replication-factor 1 --partitions 1
+      --zookeeper localhost:2181 
+      --replication-factor 1 
+      --partitions 1
       --topic csv_topic &) && (supervisord -n)"
-      
-  csv-to-kafka:
-    container_name: csv-to-kafka
+
+  csvtokafka:
     restart: always
     build: producer/.
     working_dir: /app
     ports:
-    - "9080:9080"
+    - "8080:8080"
     depends_on:
       - kafka
 
-  consumer-1:
-    container_name: consumer-1
+  consumer1:
     restart: always
-    build: consumer-1/.
+    build: consumer1/.
     working_dir: /app
     ports:
     - "80:80"
     depends_on:
       - kafka
-      - csv-to-kafka
-  
-  consumer-2:
-    container_name: consumer-2
+      - csvtokafka
+   
+  consumer2:
     restart: always
-    build: consumer-2/.
+    build: consumer2/.
     working_dir: /app
     ports:
-    - "81:81"
+        - "81:81"
+    depends_on:
+        - kafka
+        - csvtokafka
+
+  consumer3:
+    restart: always
+    build: consumer3/.
+    working_dir: /app
+    ports:
+    - "8083:82"
     depends_on:
       - kafka
-      - csv-to-kafka
+      - csvtokafka
