@@ -27,11 +27,6 @@ public class BeneficiariosController {
 
     @GetMapping("/maior")
     public BeneficiarioResponse maior() {
-
-        Beneficiario be = new Beneficiario();
-        be.valorParcela = 1969.0;
-        repository.save(be);
-
         Sort sort = Sort.by(Direction.DESC, "valorParcela");
         return mapper.toDto(repository.findAll(sort)
                             .stream()
