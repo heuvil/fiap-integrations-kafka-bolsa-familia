@@ -40,6 +40,8 @@ $ docker-compose up
 ### Prints de resultados
 ##### Resultado do consumer 1:
 ![picture](.img/resultadoConsumer1.png)
+##### Resultado do consumer 2:
+![picture](.img/resultadoConsumer2.png)
 ##### Resultado do consumer 3:
 ![picture](.img/resultadoConsumer3.png)
 ##### Atividades relializadas no Trello:
