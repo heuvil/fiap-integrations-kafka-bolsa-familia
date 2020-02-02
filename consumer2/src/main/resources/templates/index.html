@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!-- Meta tags Obrigatórias -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Consumer2-Kafka</title>
+</head>
+
+<body>
+    <style>
+        body {
+            padding-top: 50px;
+        }
+
+        .card {
+            margin: 0 auto;
+            /* Added */
+            float: none;
+            margin-bottom: 10px;
+        }
+
+        .image-block {
+            position: relative;
+        }
+
+        .image-center {
+            max-width: 900px;
+            overflow: auto;
+            margin: auto;
+            padding-top: 15px;
+            position: relative;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+    </style>
+    <div class="container">
+        <div class="card text-center">
+            <div class="image-block">
+                <img class="card-img-top image-center" style="max-width: 600px;display:block;"
+                    src="https://i.ytimg.com/vi/zrmI9KaVYPA/maxresdefault.jpg" alt="FIAP">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Beneficiários Bolsa Familia</h5>
+                <p id="erro" style="display:none;color:#ee2222">Não foi possível buscar o beneficiário que tenha a maior parcela até o momento</p>
+                <p>• Mostrar dados do beneficiário que tenha a maior parcela até o momento</p>
+                <table class="table-responsive table table-bordered table-striped text-center">
+                    <thead>
+                        <tr>
+                            <th>NIS_FAVORECIDO</th>
+                            <th>NOME_FAVORECIDO</th>
+                            <th>VALOR_PARCELA</th>
+                            <th>NOME_MUNICIPIO</th>
+                            <th>UF</th>
+                        </tr>
+                    </thead>
+                    <tbody id="maior">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript (Opcional) -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <script>
+        function loadBeneficiario() {
+            $('#carregando').show('fast');
+            $.get("/beneficiarios/maiorparcela", function (data) {
+                $('#erro').hide();
+                $('#carregando').hide('fast');
+                console.log(data);
+                if (data.nis_favorecido) {
+                    $("#maior").html("<tr><td>" + data.nis_favorecido + "</td><td>" + data.nome_favorecido + "</td><td>" + data.valor_parcela + "</td><td>" + data.nome_municipio + "</td><td>" + data.uf + "</td></tr>");
+                }
+            }).fail(function () {
+                $('#erro').show('fast');
+                $("#maior").html("");
+            });
+        }
+        setInterval(function () {
+            loadBeneficiario();
+        }, 5000);
+        loadBeneficiario();
+    </script>
+</body>
+
+</html>

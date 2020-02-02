@@ -15,8 +15,9 @@ services:
       "(sleep 15s &&
       /opt/kafka_2.11-0.10.1.0/bin/kafka-topics.sh
       --create
-      --zookeeper
-      localhost:2181 --replication-factor 1 --partitions 1
+      --zookeeper localhost:2181 
+      --replication-factor 1 
+      --partitions 1
       --topic csv_topic &) && (supervisord -n)"
 
   csvtokafka:
@@ -37,13 +38,23 @@ services:
     depends_on:
       - kafka
       - csvtokafka
+   
+  consumer2:
+    restart: always
+    build: consumer2/.
+    working_dir: /app
+    ports:
+        - "81:81"
+    depends_on:
+        - kafka
+        - csvtokafka
 
   consumer3:
     restart: always
     build: consumer3/.
     working_dir: /app
     ports:
-    - "8083:83"
+      - "8083:83"
     depends_on:
       - kafka
       - csvtokafka

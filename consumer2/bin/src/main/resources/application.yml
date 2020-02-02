@@ -1,0 +1,24 @@
+kafka:
+    host: kafka:9092
+    group-id: consumer-group
+    client-id: consumer2
+server:
+    port: 81
+
+spring:
+    datasource:
+            url: jdbc:h2:mem:beneficiarios;DB_CLOSE_ON_EXIT=FALSE
+            driver-class-name: org.h2.Driver
+            username: sa
+            password: mypass
+    h2: 
+        console:
+            enabled: true
+            
+    jpa:
+        show-sql: true
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.H2Dialect
