@@ -2,33 +2,46 @@ package br.com.fiap.consumer2.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.Column;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@Table(name="beneficiario")
 public class Beneficiario {    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;    
-    @JsonProperty("mesReferencia")
+
+    @Column(name="mes_referencia")
     public String mesReferencia;
-    @JsonProperty("mesCompetencia")
+    
+    @Column(name="mes_competencia")
     public String mesCompetencia;
-    @JsonProperty("uf")
+    
+    @Column(name="uf")
     public String uf;
-    @JsonProperty("codigoMunicipioSiafi")
+    
+    @Column(name="codigo_municipio_siafi")
     public String codigoMunicipioSiafi;
-    @JsonProperty("nomeMunicipio")
+    
+    @Column(name="nome_municipio")
     public String nomeMunicipio;
-    @JsonProperty("nisFavorecido")
+    
+    @Column(name="nis_favorecido")
     public String nisFavorecido;
-    @JsonProperty("nomeFavorecido")
+    
+    @Column(name="nome_favorecido")
     public String nomeFavorecido;
-    @JsonProperty("valorParcela")
-    public Integer valorParcela;    
+    
+    @Column(name="valor_parcela")
+    public Double valorParcela;    
 }

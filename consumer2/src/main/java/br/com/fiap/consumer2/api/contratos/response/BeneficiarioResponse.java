@@ -1,12 +1,10 @@
 package br.com.fiap.consumer2.api.contratos.response;
 
-import javax.persistence.Entity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
 @Data
-@Entity
 public class BeneficiarioResponse {    
     @JsonProperty("uf")
     public String uf;

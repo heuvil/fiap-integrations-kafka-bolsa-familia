@@ -21,30 +21,27 @@
 
         .card {
             margin: 0 auto;
-            /* Added */
             float: none;
             margin-bottom: 10px;
         }
-        .image-block {
-            position: relative;
-        }
-        .image-center {
-            max-width: 900px; 
-            overflow: auto;
+        img {
+            position: absolute;
             margin: auto;
-            padding-top: 15px;
-            position: relative;
-            top: 0; left: 0; bottom: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
         }
     </style>
     <div class="container">
-        <div class="card text-center">
-            <div class="image-block">
-                <img class="card-img-top image-center" 
-                style="max-width: 600px;display:block;"
+        <div class="card text-center">                                
+            <table width="100%" height="100%" align="center" valign="center">
+                <tr><td>
+                <img 
                 src="https://i.ytimg.com/vi/zrmI9KaVYPA/maxresdefault.jpg"
-                alt="FIAP">
-            </div>
+                alt="FIAP" alt="foo" />
+                </td></tr>
+            </table>
             <div class="card-body">
                 <h5 class="card-title">Beneficiários Bolsa Familia</h5>
                 <p id="erro" style="display:none;color:#ee2222">Não foi possível buscar eventos</p>

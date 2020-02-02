@@ -1,4 +1,4 @@
-package br.com.fiap.consumer2.mapper;
+package br.com.fiap.consumer2.api.contratos.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
