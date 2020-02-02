@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.consumer2.api.contratos.mapper.BeneficiarioMapper;
 import br.com.fiap.consumer2.api.contratos.response.BeneficiarioResponse;
-import br.com.fiap.consumer2.models.Beneficiario;
 import br.com.fiap.consumer2.repository.BeneficiarioRepository;
 
 
@@ -25,7 +24,7 @@ public class BeneficiariosController {
         this.repository = repository;
     }
 
-    @GetMapping("/maior")
+    @GetMapping("/maiorparcela")
     public BeneficiarioResponse maior() {
         Sort sort = Sort.by(Direction.DESC, "valorParcela");
         return mapper.toDto(repository.findAll(sort)

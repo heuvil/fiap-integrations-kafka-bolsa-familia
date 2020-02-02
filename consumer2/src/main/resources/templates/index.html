@@ -25,31 +25,34 @@
             float: none;
             margin-bottom: 10px;
         }
+
         .image-block {
             position: relative;
         }
+
         .image-center {
-            max-width: 900px; 
+            max-width: 900px;
             overflow: auto;
             margin: auto;
             padding-top: 15px;
             position: relative;
-            top: 0; left: 0; bottom: 0; right: 0;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
         }
     </style>
-    <div class="container">
+    <div class="container-fluid">
         <div class="card text-center">
             <div class="image-block">
-                <img class="card-img-top image-center" 
-                style="max-width: 600px;display:block;"
-                src="https://i.ytimg.com/vi/zrmI9KaVYPA/maxresdefault.jpg"
-                alt="FIAP">
+                <img class="card-img-top image-center" style="max-width: 600px;display:block;"
+                    src="https://i.ytimg.com/vi/zrmI9KaVYPA/maxresdefault.jpg" alt="FIAP">
             </div>
             <div class="card-body">
                 <h5 class="card-title">Beneficiários Bolsa Familia</h5>
-                <p id="erro" style="display:none;color:#ee2222">Não foi possível buscar eventos</p>
+                <p id="erro" style="display:none;color:#ee2222">Não foi possível buscar o beneficiário que tenha a maior parcela até o momento</p>
                 <p>• Mostrar dados do beneficiário que tenha a maior parcela até o momento</p>
-                <table class="table-responsive table">
+                <table class="table-responsive table table-bordered table-striped text-center">
                     <thead>
                         <tr>
                             <th>NIS_FAVORECIDO</th>
@@ -79,12 +82,16 @@
         crossorigin="anonymous"></script>
 
     <script>
-        function loadBeneficiario(){
+        function loadBeneficiario() {
+            $("#maior").html("");
             $('#carregando').show('fast');
-            $.get("/beneficiarios/maior", function (data) {
+            $.get("/beneficiarios/maiorparcela", function (data) {
                 $('#erro').hide();
                 $('#carregando').hide('fast');
-                $("#maior").html("<tr><td>" + data.nis_favorecido + "</td><td>" + data.nome_favorecido + "</td><td>" + data.valor_parcela + "</td><td>" + data.nome_municipio + "</td><td>" + data.nome_uf + "</td></tr>");
+                console.log(data);
+                if (data.nis_favorecido) {
+                    $("#maior").html("<tr><td>" + data.nis_favorecido + "</td><td>" + data.nome_favorecido + "</td><td>" + data.valor_parcela + "</td><td>" + data.nome_municipio + "</td><td>" + data.uf + "</td></tr>");
+                }
             }).fail(function () {
                 $('#erro').show('fast');
             });
