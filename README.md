@@ -36,3 +36,6 @@ Para executar o projeto
 ```sh
 $ docker-compose up
 ```
+
+### Prints de resultados
+![picture].img/resultadoConsumer3.png
