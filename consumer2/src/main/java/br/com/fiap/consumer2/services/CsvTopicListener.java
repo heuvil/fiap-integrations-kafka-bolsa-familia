@@ -15,8 +15,6 @@ import org.springframework.kafka.annotation.KafkaListener;
 
 @Service
 public class CsvTopicListener {
-    public static int mensagensLidas = 0;
-
     private final BeneficiarioRepository repository;
 
     @Autowired
