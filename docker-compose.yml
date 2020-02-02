@@ -54,7 +54,7 @@ services:
     build: consumer3/.
     working_dir: /app
     ports:
-    - "8083:82"
+      - "8083:83"
     depends_on:
       - kafka
       - csvtokafka
