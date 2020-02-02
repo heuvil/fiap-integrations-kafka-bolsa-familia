@@ -38,4 +38,6 @@ $ docker-compose up
 ```
 
 ### Prints de resultados
-![picture].img/resultadoConsumer3.png
+##### Resultado do consumer 3:
+![picture](.img/resultadoConsumer3.png)
+ 
