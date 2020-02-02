@@ -83,7 +83,6 @@
 
     <script>
         function loadBeneficiario() {
-            $("#maior").html("");
             $('#carregando').show('fast');
             $.get("/beneficiarios/maiorparcela", function (data) {
                 $('#erro').hide();
@@ -94,6 +93,7 @@
                 }
             }).fail(function () {
                 $('#erro').show('fast');
+                $("#maior").html("");
             });
         }
         setInterval(function () {
