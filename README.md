@@ -30,7 +30,6 @@ Membros do Grupo:
 Links
 
 * [Trello](https://trello.com/b/r84eF4pp/trabalho-integra%C3%A7%C3%A3o) - Link para o trello
-* [Trello](https://breakdance.github.io/breakdance/) - Link bigpicture
 
 
 ### Installation
